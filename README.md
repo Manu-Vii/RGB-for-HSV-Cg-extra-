@@ -5,6 +5,7 @@
 **Professor:** Marcelo Costa Oliveira
 
 ---
+##nota: O cálculo está no color_math.py
 
 ## O que é este projeto?
 
@@ -21,7 +22,7 @@ O algoritmo de conversão segue as fórmulas apresentadas em aula, incluindo os 
 📁 rgb_hsv_opengl/
 │
 ├── main.py          →  Janela GLFW, callbacks, loop principal, layout
-├── color_math.py    →  Algoritmos RGB↔HSV (sem dependência de OpenGL)
+├── color_math.py    →  Algoritmos RGB for HSV 
 ├── gl_utils.py      →  Primitivas OpenGL: texturas, formas, texto
 ├── ui_widgets.py    →  Componentes Button e Slider
 └── README.md        →  Este arquivo
