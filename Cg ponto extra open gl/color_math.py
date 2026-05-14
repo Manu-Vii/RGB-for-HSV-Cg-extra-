@@ -22,8 +22,12 @@ def rgb_to_hsv(img_rgb: np.ndarray) -> np.ndarray:
             cmin = min(r, g, b)
             delta = cmax - cmin
 
+
+                 #luminosidade
+
             v = cmax
 
+                #saturação
             if cmax > 0.0:
                 s = delta / cmax
             else:
