@@ -93,12 +93,12 @@ class App:
 
         self.btn_open = Button(
             PAD, 14, BTN1, BH,
-            "\u2b06  ENVIAR",
+            "ENVIAR",
             bg=(0.10, 0.48, 0.90))
 
         self.btn_reset = Button(
             PAD + BTN1 + 10, 14, BTN2, BH,
-            "\u21ba  ZERAR",
+            "ZERAR",
             bg=(0.20, 0.20, 0.26))
 
         SX = PAD + BTN1 + 10 + BTN2 + 22
