@@ -1,5 +1,3 @@
-
-
 import sys
 import os
 import ctypes
@@ -95,12 +93,12 @@ class App:
 
         self.btn_open = Button(
             PAD, 14, BTN1, BH,
-            "\u2b06  ENVIAR IMAGEM",
+            "\u2b06  ENVIAR",
             bg=(0.10, 0.48, 0.90))
 
         self.btn_reset = Button(
             PAD + BTN1 + 10, 14, BTN2, BH,
-            "\u21ba  RESETAR",
+            "\u21ba  ZERAR",
             bg=(0.20, 0.20, 0.26))
 
         SX = PAD + BTN1 + 10 + BTN2 + 22
@@ -174,7 +172,8 @@ class App:
         if self._active_sl:
             self._active_sl.set_from_mouse(mx)
             self._refresh()
-
+    
+    #aqui abre a imagem desejada
     def open_image(self) -> None:
         root = tk.Tk()
         root.withdraw()
@@ -188,13 +187,16 @@ class App:
         root.destroy()
         if not path:
             return
-
+            
+            #manda pra conversão
         img = Image.open(path).convert("RGB")
         MAX = 1080 
         if img.width > MAX or img.height > MAX:
             img.thumbnail((MAX, MAX), Image.LANCZOS)
 
         self.img_rgb  = np.array(img, dtype=np.uint8)
+
+        #pixel por pixel
         self.img_hsv  = rgb_to_hsv(self.img_rgb)
         self.img_adj  = self.img_rgb.copy()
         self.img_name = os.path.basename(path)
@@ -263,12 +265,6 @@ class App:
         fill_rect(half_w - 1, IMG_BOT, 2, area_h, 0.18, 0.18, 0.26)
 
         if self.tex_orig is None or self.img_rgb is None:
-            msg = "\u2b06  Clique em ENVIAR IMAGEM para comecar"
-            tw, th = measure_text(msg, size=15)
-            draw_text(msg,
-                      self._w // 2 - tw // 2,
-                      IMG_BOT + area_h // 2 - th // 2,
-                      size=15, color=(75, 80, 110))
             return
 
         ih, iw = self.img_rgb.shape[:2]
@@ -279,24 +275,24 @@ class App:
         dw    = int(iw * scale)
         dh    = int(ih * scale)
 
-        # inagem original — esquerda
+        # inagem original 
         ox = IMG_PAD + (aw - dw) // 2
         oy = IMG_BOT + IMG_PAD + (ah - dh) // 2
         draw_quad_textured(self.tex_orig, ox, oy, dw, dh)
         stroke_rect(ox - 1, oy - 1, dw + 2, dh + 2,
                     0.25, 0.50, 1.0, lw=1.5)
-        draw_text(f"ORIGINAL  (RGB)   {iw}x{ih}",
+        draw_text(f"ORIGINAL  (RGB)",
                   IMG_PAD, IMG_BOT + area_h - LABEL_H - 2,
                   size=12, color=(120, 175, 255), bold=True)
 
-        # imagem ajustada — direita
+        # imagem ajustada
         ax = half_w + IMG_PAD + (aw - dw) // 2
         draw_quad_textured(self.tex_adj, ax, oy, dw, dh)
         stroke_rect(ax - 1, oy - 1, dw + 2, dh + 2,
                     0.10, 0.75, 0.42, lw=1.5)
 
-        # rótulo de resultado sempre limpo e fixo
-        lbl = "RESULTADO (HSV Ajustado)"
+        # rótulo de resultado 
+        lbl = "RESULTADO"
 
         draw_text(lbl,
                   half_w + IMG_PAD,
