@@ -5,9 +5,9 @@
 **Professor:** Marcelo Costa Oliveira
 
 ---
-##nota: O cálculo está no color_math.py
-
-## O que é este projeto?
+**nota: O cálculo está no color_math.py
+**
+## O que é?
 
 Este programa converte imagens do espaço de cores **RGB** para **HSV** usando OpenGL puro com Python. A janela é criada pelo **GLFW**  uma biblioteca nativa de OpenGL sem depender do Pygame para isso.
 
