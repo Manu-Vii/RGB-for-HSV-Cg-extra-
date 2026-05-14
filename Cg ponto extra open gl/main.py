@@ -314,6 +314,9 @@ class App:
 
         while not glfw.window_should_close(self.window):
             glfw.poll_events()
+              
+            if glfw.window_should_close(self.window):
+                break
 
             win_w, win_h = glfw.get_window_size(self.window)
             fb_w, fb_h = glfw.get_framebuffer_size(self.window)
